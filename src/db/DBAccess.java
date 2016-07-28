@@ -412,7 +412,7 @@ public class DBAccess {
 
 
 	/**
-	 * ORDER_Iテーブルから削除指定された顧客の注文データを削除するメソッド
+	 * ORDER_Iテーブルから選択された顧客の注文データを削除するメソッド
 	 *
 	 * @param con DBコネクション
 	 * @param frm 選択されたORDER_ID
