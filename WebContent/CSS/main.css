@@ -1,0 +1,197 @@
+/*!
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body {
+	background-color: #f9db79;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: #FFFFFF;
+	text-align : center;
+}
+
+#title {
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+
+#title h1 {
+	font-size: 90px;
+	font-weight: 900;
+	letter-spacing: 1px;
+	color: #FFFFFF;
+	text-align : center;
+}
+
+#login {
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	text-align : center;
+}
+
+#login p {
+	width: 100%;
+	margin-left : auto ;
+	margin-right : auto ;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 25px;
+}
+
+#login h1 {
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: #FFFFFF;
+}
+
+
+#login h2 {
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: #FFFFFF;
+}
+
+.button {
+	width :150px;
+	padding:5px;
+	border :2px;
+	border-color:#FFFFFF;
+	border-style:solid;
+	background-color:#f9db79;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+	margin:10px;
+}
+
+.button:hover {
+	background-color:black;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
+}
+
+.minibutton {
+	border-radius: 25px;
+	border-color:#FFFFFF;
+	border-style:solid;
+	background-color:#f9db79;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+.minibutton:hover {
+	background-color:black;
+	transition: 0.5s ;
+}
+
+.text {
+	width :150px;
+	padding:10px;
+	border-radius: 5px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.fa {
+	padding:10px;
+}
+
+#order {
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	text-align : center;
+}
+
+#order p {
+	width: 100%;
+	margin-left : auto ;
+	margin-right : auto ;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 25px;
+}
+
+.orderbox {
+	margin-top:10px;
+	margin-left:10px;
+	text-align : center;
+}
+
+.orderbox th {
+	background-color:#FFFFFF;
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: black;
+}
+
+
+.orderbox td {
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: black;
+}
+
+
+.box {
+	margin-top:10px;
+	margin-left:10px;
+	float:left;
+	text-align : center;
+}
+
+.box th {
+	background-color:#FFFFFF;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: black;
+}
+
+
+.box td {
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	color: black;
+}
+
+.boxList {
+    width:auto;
+    height:auto;
+    display: inline-block;
+}
+
+#salesGraph {
+	margin-left : auto ;
+	margin-right : auto ;
+}
+
+#foodGraph {
+	margin-left : auto ;
+	margin-right : auto ;
+}
+
+#drinkGraph {
+	margin-left : auto ;
+	margin-right : auto ;
+}
+

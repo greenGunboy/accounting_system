@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<!--
+
+     This is a blank Struts configuration file with an example
+     welcome action/page and other commented sample elements.
+
+     Tiles and the Struts Validator are configured using the factory defaults
+     and are ready-to-use.
+
+     NOTE: If you have a generator tool to create the corresponding Java classes
+     for you, you could include the details in the "form-bean" declarations.
+     Otherwise, you would only define the "form-bean" element itself, with the
+     corresponding "name" and "type" attributes, as shown here.
+
+-->
+
+
+<struts-config>
+
+<!-- ============================================ Data Source Configuration -->
+
+<data-sources>
+	<data-source type = "org.apache.commons.dbcp.BasicDataSource">
+		<!-- ***************JDBCの設定*************** -->
+		<set-property property = "driverClassName" value = "com.mysql.jdbc.Driver" />
+		<!-- ***********JDBCの接続情報設定*********** -->
+		<set-property property = "url" value = "jdbc:mysql://localhost/techfunTakahashi?useUnicode=true&amp;characterEncoding=Shift_JIS" />
+		<!-- **********MySQLのユーザID設定********** -->
+		<set-property property = "username" value = "root" />
+		<!-- **********MySQLのパスワード設定********** -->
+		<set-property property = "password" value = "" />
+	</data-source>
+</data-sources>
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+
+		<form-bean name = "loginform" type = "login.form.LoginForm" />
+
+		<form-bean name = "menuform" type = "menu.form.MenuForm" />
+
+		<form-bean name = "orderform" type = "order.form.OrderForm" />
+
+		<form-bean name = "graphform" type = "graph.form.GraphForm" />
+
+    </form-beans>
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+
+        <!-- sample exception handler
+
+        <exception
+            key="expired.password"
+            type="app.ExpiredPasswordException"
+            path="/changePassword.jsp"/>
+        end sample -->
+
+    </global-exceptions>
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+    </global-forwards>
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+        <action
+            path="/Welcome"
+            forward="/pages/Welcome.jsp"/>
+
+
+
+
+<!-- ============================ログインページ=============================== -->
+
+	<action
+	    path = "/login"
+	    parameter = "pageControl"
+	    type = "login.LoginAction"
+	    name = "loginform"
+	    validate = "false">
+	    <forward name = "nextInput" path = "/login/input.jsp" />
+	    <forward name = "login" path = "/menu/menu.jsp" />
+	    <forward name = "error" path = "/login/login.jsp" />
+    </action>
+
+    <action
+	    path = "/loginInput"
+	    parameter = "pageControl"
+	    type = "login.InputAction"
+	    name = "loginform"
+	    validate = "true"
+	    input = "/login/input.jsp">
+	    <forward name = "idcheck" path = "/login/input.jsp" />
+	    <forward name = "nextConf" path = "/login/conf.jsp" />
+	    <forward name = "backControl" path = "/login/login.jsp" />
+	    <forward name = "error" path = "/login/login.jsp" />
+    </action>
+
+    <action
+	    path = "/loginConf"
+	    parameter = "pageControl"
+	    type = "login.ConfAction"
+	    name = "loginform"
+	    validate = "false">
+	    <forward name = "nextEnd" path = "/login/end.jsp" />
+	    <forward name = "backControl" path = "/login/input.jsp" />
+	    <forward name = "error" path = "/login/error.jsp" />
+    </action>
+
+    <action
+	    path = "/loginEnd"
+	    parameter = "pageControl"
+	    type = "login.EndAction"
+	    name = "loginform"
+	    validate = "false">
+	    <forward name = "toMenu" path = "/menu/menu.jsp" />
+	    <forward name = "logout" path = "/login/login.jsp" />
+    </action>
+
+
+
+<!-- ============================メニューページ=============================== -->
+
+    <action
+	    path = "/menu"
+	    parameter = "pageControl"
+	    type = "menu.MenuAction"
+	    name = "loginform"
+	    validate = "false">
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "menuManage" path = "/menu/menuList.jsp" />
+	    <forward name = "graph" path = "/graph/menu.jsp" />
+	    <forward name = "logout" path = "/login/login.jsp" />
+	    <forward name = "error" path = "/login/login.jsp" />
+    </action>
+
+    <action
+	    path = "/menuList"
+	    parameter = "pageControl"
+	    type = "menu.MenuListAction"
+	    name = "menuform"
+	    validate = "false">
+	    <forward name = "nextInput" path = "/menu/input.jsp" />
+	    <forward name = "backControl" path = "/menu/menu.jsp" />
+	    <forward name = "upd" path = "/menu/upd.jsp" />
+	    <forward name = "delete" path = "/menu/delete.jsp" />
+	    <forward name = "error" path = "/login/login.jsp" />
+    </action>
+
+    <action
+	    path = "/menuInput"
+	    parameter = "pageControl"
+	    type = "menu.InputAction"
+	    name = "menuform"
+	    validate = "true"
+	    input = "/menu/input.jsp">
+	    <forward name = "nextConf" path = "/menu/conf.jsp" />
+	    <forward name = "backControl" path = "/menu/menuList.jsp" />
+    </action>
+
+    <action
+	    path = "/menuConf"
+	    parameter = "pageControl"
+	    type = "menu.ConfAction"
+	    name = "menuform"
+	    validate = "false">
+	    <forward name = "nextMenuList" path = "/menu/menuList.jsp" />
+	    <forward name = "backControl" path = "/menu/input.jsp" />
+    </action>
+
+    <action
+	    path = "/menuUpd"
+	    parameter = "pageControl"
+	    type = "menu.UpdAction"
+	    name = "menuform"
+	    validate = "true"
+	    input = "/menu/upd.jsp">
+	    <forward name = "upd" path = "/menu/menuList.jsp" />
+	    <forward name = "backControl" path = "/menu/menuList.jsp" />
+    </action>
+
+    <action
+	    path = "/menuDelete"
+	    parameter = "pageControl"
+	    type = "menu.DeleteAction"
+	    name = "menuform"
+	    validate = "false">
+	    <forward name = "delete" path = "/menu/menuList.jsp" />
+	    <forward name = "backControl" path = "/menu/menuList.jsp" />
+    </action>
+
+
+
+<!-- ============================注文ページ=============================== -->
+
+    <action
+	    path = "/order"
+	    parameter = "pageControl"
+	    type = "order.MenuAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "nextInput" path = "/order/input.jsp" />
+	    <forward name = "upd" path = "/order/upd.jsp" />
+	    <forward name = "delete" path = "/order/delete.jsp" />
+	    <forward name = "backControl" path = "/menu/menu.jsp" />
+	    <forward name = "table_add" path = "/order/guestadd.jsp" />
+	    <forward name = "pay" path = "/order/pay.jsp" />
+	    <forward name = "error" path = "/order/menu.jsp" />
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "guestUpd" path = "/order/guestupd.jsp" />
+    </action>
+
+    <action
+	    path = "/orderInput"
+	    parameter = "pageControl"
+	    type = "order.InputAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "nextConf" path = "/order/conf.jsp" />
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+	    <forward name = "error" path = "/order/input.jsp" />
+    </action>
+
+    <action
+	    path = "/orderConf"
+	    parameter = "pageControl"
+	    type = "order.ConfAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "backControl" path = "/order/input.jsp" />
+    </action>
+
+    <action
+	    path = "/guestadd"
+	    parameter = "pageControl"
+	    type = "order.GuestAddAction"
+	    name = "orderform"
+	    validate = "true"
+	    input = "/order/guestadd.jsp">
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "backGuestAdd" path = "/order/guestadd.jsp" />
+    </action>
+
+
+    <action
+	    path = "/guestupd"
+	    parameter = "pageControl"
+	    type = "order.GuestUpdAction"
+	    name = "orderform"
+	    validate = "true"
+	    input = "/order/guestupd.jsp">
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "backGuestUpd" path = "/order/guestupd.jsp" />
+    </action>
+
+    <action
+	    path = "/orderUpd"
+	    parameter = "pageControl"
+	    type = "order.UpdAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+    </action>
+
+    <action
+	    path = "/orderDelete"
+	    parameter = "pageControl"
+	    type = "order.DeleteAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "nextMenu" path = "/order/menu.jsp" />
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+    </action>
+
+    <action
+	    path = "/orderPay"
+	    parameter = "pageControl"
+	    type = "order.PayAction"
+	    name = "orderform"
+	    validate = "false">
+	    <forward name = "pay" path = "/order/menu.jsp" />
+	    <forward name = "backControl" path = "/order/menu.jsp" />
+    </action>
+
+
+
+<!-- ============================グラフページ=============================== -->
+
+    <action
+	    path = "/graph"
+	    parameter = "pageControl"
+	    type = "graph.MenuAction"
+	    name = "graphform"
+	    validate = "false">
+	    <forward name = "salesGraph" path = "/graph/salesGraph.jsp" />
+	    <forward name = "menuGraph" path = "/graph/menuGraph.jsp" />
+	    <forward name = "backControl" path = "/menu/menu.jsp" />
+    </action>
+
+    <action
+	    path = "/graphSales"
+	    parameter = "pageControl"
+	    type = "graph.SalesGraphAction"
+	    name = "graphform"
+	    validate = "false">
+	    <forward name = "see" path = "/graph/salesGraph.jsp" />
+	    <forward name = "backControl" path = "/graph/menu.jsp" />
+    </action>
+
+    <action
+	    path = "/graphMenu"
+	    parameter = "pageControl"
+	    type = "graph.MenuGraphAction"
+	    name = "graphform"
+	    validate = "false">
+	    <forward name = "salesGraph" path = "/graph/salesGraph.jsp" />
+	    <forward name = "menuGraph" path = "/graph/menuGraph.jsp" />
+	    <forward name = "backControl" path = "/graph/menu.jsp" />
+    </action>
+
+
+    </action-mappings>
+
+<!-- ============================================= Controller Configuration -->
+
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="MessageResources" />
+
+<!-- =============================================== Plug Ins Configuration -->
+
+
+  <!-- ======================================================= Tiles plugin -->
+
+  <!--
+
+     This plugin initialize Tiles definition factory. This later can takes some
+parameters explained here after. The plugin first read parameters from
+web.xml, thenoverload them with parameters defined here. All parameters
+are optional.
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional)
+            Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1)
+            Specify if the Tiles definition factory is module aware. If true
+            (default), there will be one factory for each Struts module.
+If false, there will be one common factory for all module. In this
+            later case, it is still needed to declare one plugin per module.
+            The factory will be initialized with parameters found in the first
+            initialized plugin (generally the one associated with the default
+            module).
+  true : One factory per module. (default)
+  false : one single shared factory for all modules
+  - definitions-parser-validate: (optional)
+        Specify if xml parser should validate the Tiles configuration file.
+  true : validate. DTD should be specified in file header (default)
+  false : no validation
+
+  Paths found in Tiles definitions are relative to the main context.
+
+  -->
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <!-- Path to XML definition file -->
+
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+
+      <!-- Set Module-awareness to true -->
+
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+
+  </plug-in>
+
+</struts-config>
